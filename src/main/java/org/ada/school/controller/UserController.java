@@ -2,6 +2,7 @@ package org.ada.school.controller;
 
 import org.ada.school.dto.UserDto;
 import org.ada.school.model.User;
+import org.ada.school.repository.UserDocument;
 import org.ada.school.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,26 +31,26 @@ public class UserController
 
 
     @GetMapping
-    public ResponseEntity<List<User>> all()
+    public ResponseEntity<List<UserDocument>> all()
     {
         return ResponseEntity.ok( userService.all() );
     }
 
     @GetMapping( "/{id}" )
-    public ResponseEntity<User> findById( @PathVariable String id )
+    public ResponseEntity<UserDocument> findById( @PathVariable String id )
     {
         return ResponseEntity.ok( userService.findById( id ) );
     }
 
 
     @PostMapping
-    public ResponseEntity<User> create( @RequestBody UserDto userDto )
+    public ResponseEntity<UserDocument> create( @RequestBody UserDto userDto )
     {
-        return ResponseEntity.ok( userService.create( new User( userDto ) ) );
+        return ResponseEntity.ok( userService.create( new UserDocument( userDto ) ) );
     }
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<User> update( @RequestBody UserDto userDto, @PathVariable String id )
+    public ResponseEntity<UserDocument> update( @RequestBody UserDto userDto, @PathVariable String id )
     {
         return ResponseEntity.ok( userService.update( userDto, id ) );
     }
